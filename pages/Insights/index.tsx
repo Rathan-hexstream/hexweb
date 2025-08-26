@@ -16,13 +16,16 @@ const FILTER_TYPES = [
     "White Papers",
     "UAUG",
 ];
+
+// ✅ Added type for Pagination props
 type PaginationProps = {
-    items: number; // total count, since you're passing filteredData.length
+    items: number;
     currentPage: number;
     pageSize: number;
     onPageChange: (page: number) => void;
 };
-const Pagination = ({ items, currentPage, pageSize, onPageChange }) => {
+
+const Pagination = ({ items, currentPage, pageSize, onPageChange }: PaginationProps) => {
     const totalPages = Math.ceil(items / pageSize);
     const maxVisible = 5;
     const [startPage, setStartPage] = useState(1);
@@ -75,21 +78,22 @@ const Pagination = ({ items, currentPage, pageSize, onPageChange }) => {
     );
 };
 
-const paginate = (items: string | any[], pageNumber: number, pageSize: number) => {
+// ✅ Fix type for paginate function
+const paginate = <T,>(items: T[], pageNumber: number, pageSize: number): T[] => {
     const startIndex = (pageNumber - 1) * pageSize;
     return items.slice(startIndex, startIndex + pageSize);
 };
 
 const Index = () => {
-    const [whitepapers, setWhitepapers] = useState([]);
-    const [blogs, setBlogs] = useState([]);
-    const [techCorner, setTechCorner] = useState([]);
-    const [successStories, setSuccessStories] = useState([]);
-    const [uaug, setUAUG] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [search, setSearch] = useState("");
-    const [selectedTypes, setSelectedTypes] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [whitepapers, setWhitepapers] = useState<any[]>([]);
+    const [blogs, setBlogs] = useState<any[]>([]);
+    const [techCorner, setTechCorner] = useState<any[]>([]);
+    const [successStories, setSuccessStories] = useState<any[]>([]);
+    const [uaug, setUAUG] = useState<any[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [search, setSearch] = useState<string>("");
+    const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const pageSize = 10;
 
     useEffect(() => {
@@ -182,27 +186,27 @@ const Index = () => {
                     }),
                 ]);
 
-                setWhitepapers(wpRes.data.whitepapersConnection.edges.map(({ node }) => ({
+                setWhitepapers(wpRes.data.whitepapersConnection.edges.map(({ node }: any) => ({
                     ...node,
                     contentType: "White Papers",
                     publishedAt: node.publishedAt,
                 })));
-                setBlogs(blogRes.data.blogsConnection.edges.map(({ node }) => ({
+                setBlogs(blogRes.data.blogsConnection.edges.map(({ node }: any) => ({
                     ...node,
                     contentType: "HEXstream Blog",
                     publishedAt: node.publishedAt,
                 })));
-                setTechCorner(techRes.data.techCornersConnection.edges.map(({ node }) => ({
+                setTechCorner(techRes.data.techCornersConnection.edges.map(({ node }: any) => ({
                     ...node,
                     contentType: "Tech Corner",
                     publishedAt: node.publishedAt,
                 })));
-                setSuccessStories(storyRes.data.successStories.map((item) => ({
+                setSuccessStories(storyRes.data.successStories.map((item: any) => ({
                     ...item,
                     contentType: "Success Stories",
                     publishedAt: item.createdAt,
                 })));
-                setUAUG(uaugRes.data.uaugEvents.map((item) => ({
+                setUAUG(uaugRes.data.uaugEvents.map((item: any) => ({
                     title: item.eventTitle,
                     slug: item.slug,
                     shortDescription: item.eventExcerpt,
@@ -229,7 +233,7 @@ const Index = () => {
         setCurrentPage(1);
     };
 
-    const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
         setCurrentPage(1);
     };
@@ -264,19 +268,15 @@ const Index = () => {
         let matchesType = false;
 
         if (selectedTypes.length > 0) {
-            // If filters selected, match only selected types
             matchesType = selectedTypes.includes(item.contentType);
         } else if (searchNormalized === "") {
-            // If NO search and NO filter → Show only Tech Corner
             matchesType = item.contentType === "Tech Corner";
         } else {
-            // If search is active but no filter → Show all types
             matchesType = true;
         }
 
         return matchesSearch && matchesType;
     });
-
 
     useEffect(() => {
         if (currentPage > Math.ceil(filteredData.length / pageSize)) {
@@ -286,7 +286,7 @@ const Index = () => {
 
     const paginatedData = paginate(filteredData, currentPage, pageSize);
 
-    const getSlugPrefix = (type) => {
+    const getSlugPrefix = (type: string) => {
         switch (type) {
             case "HEXstream Blog":
                 return "blogs";
