@@ -2,6 +2,12 @@ import React from 'react';
 import NewPageheader from '@/components/reusable/NewPageheader';
 import Expertise from "@/public/assets/Expertise.jpg";
 
+type TechCategory = {
+    title: string;
+    tools: string[];
+    highlight?: boolean;
+};
+
 const ServiceDetails = () => {
     return (
         <div className="overflow-x-hidden">
@@ -51,6 +57,7 @@ const techCategories = [
     {
         title: 'Data Engineering',
         tools: ['Spark', 'Databricks', 'AWS Glue', 'Azure Data Factory', 'DBT', 'Matillion', 'OIC', 'GoldenGate', 'SOA', 'LEC', 'Informatica', 'Biztalk', 'Dell Boomi', 'Attunity'],
+        highlight: true,
     },
     {
         title: 'Business Analysis',
@@ -75,6 +82,7 @@ const techCategories = [
     {
         title: 'Agentic AI / GPT',
         tools: ['Open AI', 'Gemini', 'Langchain', 'CrewAI', 'CoPilot'],
+        highlight: true,
     },
     {
         title: 'App Development',
