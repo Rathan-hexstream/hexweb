@@ -16,7 +16,12 @@ const FILTER_TYPES = [
     "White Papers",
     "UAUG",
 ];
-
+type PaginationProps = {
+    items: number; // total count, since you're passing filteredData.length
+    currentPage: number;
+    pageSize: number;
+    onPageChange: (page: number) => void;
+};
 const Pagination = ({ items, currentPage, pageSize, onPageChange }) => {
     const totalPages = Math.ceil(items / pageSize);
     const maxVisible = 5;
