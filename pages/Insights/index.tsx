@@ -316,7 +316,7 @@ const Index = () => {
             <NewPageheader
                 title="Insights & Resources"
                 description="HEXstream experts dive into emerging tech topics and best practices."
-                img={white_papers.src}
+                img={white_papers}
             />
 
             <div className="py-14 bg-primary min-h-screen">
