@@ -304,6 +304,11 @@ export default function Navbar() {
                       <Link className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md" href="/careers">
                         Careers
                       </Link>
+                      <li>
+                          <Link className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md" href="/uaug">
+                              Utilities Analytics User Group
+                          </Link>
+                      </li>
                     </li>
                   </ul>
                 </div>
