@@ -14,7 +14,7 @@ const FILTER_TYPES = [
     "Success Stories",
     "HEXstream Blog",
     "White Papers",
-    "UAUG",
+    // "UAUG",
 ];
 
 // ✅ Added type for Pagination props
@@ -89,7 +89,7 @@ const Index = () => {
     const [blogs, setBlogs] = useState<any[]>([]);
     const [techCorner, setTechCorner] = useState<any[]>([]);
     const [successStories, setSuccessStories] = useState<any[]>([]);
-    const [uaug, setUAUG] = useState<any[]>([]);
+    // const [uaug, setUAUG] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [search, setSearch] = useState<string>("");
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -99,7 +99,7 @@ const Index = () => {
     useEffect(() => {
         const fetchAllData = async () => {
             try {
-                const [wpRes, blogRes, techRes, storyRes, uaugRes] = await Promise.all([
+                const [wpRes, blogRes, techRes, storyRes ] = await Promise.all([
                     contentApi.query({
                         query: gql`
                             {
@@ -170,20 +170,20 @@ const Index = () => {
                             }
                         `,
                     }),
-                    contentApi.query({
-                        query: gql`
-                            {
-                                uaugEvents(first: 100, orderBy: publishedAt_DESC) {
-                                    eventTitle
-                                    slug
-                                    eventExcerpt
-                                    eventBanner { url }
-                                    eventDetails { text }
-                                    publishedAt
-                                }
-                            }
-                        `,
-                    }),
+                    // contentApi.query({
+                    //     query: gql`
+                    //         {
+                    //             uaugEvents(first: 100, orderBy: publishedAt_DESC) {
+                    //                 eventTitle
+                    //                 slug
+                    //                 eventExcerpt
+                    //                 eventBanner { url }
+                    //                 eventDetails { text }
+                    //                 publishedAt
+                    //             }
+                    //         }
+                    //     `,
+                    // }),
                 ]);
 
                 setWhitepapers(wpRes.data.whitepapersConnection.edges.map(({ node }: any) => ({
@@ -206,15 +206,15 @@ const Index = () => {
                     contentType: "Success Stories",
                     publishedAt: item.createdAt,
                 })));
-                setUAUG(uaugRes.data.uaugEvents.map((item: any) => ({
-                    title: item.eventTitle,
-                    slug: item.slug,
-                    shortDescription: item.eventExcerpt,
-                    mainBanner: item.eventBanner,
-                    details: item.eventDetails,
-                    contentType: "UAUG",
-                    publishedAt: item.publishedAt,
-                })));
+                // setUAUG(uaugRes.data.uaugEvents.map((item: any) => ({
+                //     title: item.eventTitle,
+                //     slug: item.slug,
+                //     shortDescription: item.eventExcerpt,
+                //     mainBanner: item.eventBanner,
+                //     details: item.eventDetails,
+                //     contentType: "UAUG",
+                //     publishedAt: item.publishedAt,
+                // })));
 
                 setLoading(false);
             } catch (error) {
@@ -238,7 +238,7 @@ const Index = () => {
         setCurrentPage(1);
     };
 
-    const combinedData = [...whitepapers, ...blogs, ...techCorner, ...successStories, ...uaug].sort((a, b) => {
+    const combinedData = [...whitepapers, ...blogs, ...techCorner, ...successStories, {/*...uaug*/}].sort((a, b) => {
         const aT = new Date(a.publishedAt || a.createdAt).getTime();
         const bT = new Date(b.publishedAt || b.createdAt).getTime();
         return bT - aT;
@@ -296,8 +296,8 @@ const Index = () => {
                 return "success-stories";
             case "White Papers":
                 return "whitepapers";
-            case "UAUG":
-                return "uaug";
+            // case "UAUG":
+            //     return "uaug";
             default:
                 return "";
         }
