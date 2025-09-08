@@ -210,31 +210,42 @@ export default function Navbar() {
                     </svg>
                   </button>
                   <ul className="dropdown-menu absolute hidden group-hover:block bg-white text-primary pt-1 w-52 rounded-lg shadow-lg z-50 transition duration-300 ease-in-out">
-                    {oracle.map(({ name, href, submenu }) => (
-                        <li key={name} className="relative group/submenu">
-                          {submenu ? (
-                              <>
-                                <span className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md cursor-pointer">
-                                  {name}
-                                  <svg className="w-3 h-3 inline ml-1 fill-current" viewBox="0 0 20 20"><path d="M6 4l8 6-8 6V4z" /></svg>
-                                </span>
-                                <ul className="absolute top-0 left-full hidden group-hover/submenu:block bg-white text-primary w-52 rounded-lg shadow-lg transition duration-300 ease-in-out z-50">
-                                  {submenu.map(({ name: subName, href: subHref }) => (
-                                      <li key={subName}>
-                                        <Link href={subHref} className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md">
-                                          {subName}
-                                        </Link>
-                                      </li>
-                                  ))}
-                                </ul>
-                              </>
-                          ) : (
-                              <Link href={href} className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md">
-                                {name}
-                              </Link>
-                          )}
-                        </li>
-                    ))}
+                      {oracle.map(({ name, href, submenu }) => (
+                          <li key={name} className="relative group/submenu">
+                              {submenu ? (
+                                  <>
+                                      <Link
+                                          href={href}
+                                          className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md flex justify-between items-center cursor-pointer"
+                                      >
+                                          {name}
+                                          <svg className="w-3 h-3 ml-1 fill-current" viewBox="0 0 20 20">
+                                              <path d="M6 4l8 6-8 6V4z" />
+                                          </svg>
+                                      </Link>
+                                      <ul className="absolute top-0 left-full hidden group-hover/submenu:block bg-white text-primary w-52 rounded-lg shadow-lg transition duration-300 ease-in-out z-50">
+                                          {submenu.map(({ name: subName, href: subHref }) => (
+                                              <li key={subName}>
+                                                  <Link
+                                                      href={subHref}
+                                                      className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md"
+                                                  >
+                                                      {subName}
+                                                  </Link>
+                                              </li>
+                                          ))}
+                                      </ul>
+                                  </>
+                              ) : (
+                                  <Link
+                                      href={href}
+                                      className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md"
+                                  >
+                                      {name}
+                                  </Link>
+                              )}
+                          </li>
+                      ))}
                   </ul>
                 </div>
                 {/* Technologies */}
