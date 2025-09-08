@@ -25,9 +25,9 @@ const services = [
     href: "/capabilities/utility360", // ✅ Proper link that will navigate
     hasSubmenu: true,                 // ✅ Flag to help in UI logic
     submenu: [
-      { name: "Storm Analytics", href: "/capabilities/utility360#1" },
-      { name: "Reliability Analytics", href: "/capabilities/utility360#2" },
-      { name: "AMI Analytics", href: "/capabilities/utility360#4" },
+      { name: "Storm Analytics", href: "/capabilities/storm-analytics" },
+      { name: "Reliability Analytics", href: "/capabilities/reliability-analytics" },
+      { name: "AMI Analytics", href: "/capabilities/ami-analytics" },
     ],
   },
   { name: "SPARC", href: "/capabilities/sparc" },
@@ -41,10 +41,10 @@ const oracle = [
     name: "Data Exchange",
     href: "/capabilities/data-exchange",
     submenu: [
-      { name: "Golden Gate", href: "/capabilities/data-exchange" },
-      { name: "LEC", href: "/capabilities/data-exchange#1" },
-      { name: "OIC", href: "/capabilities/data-exchange#2" },
-      { name: "SOA", href: "/capabilities/data-exchange#3" },
+      { name: "Golden Gate", href: "/capabilities/goldengate" },
+      { name: "LEC", href: "/capabilities/lec" },
+      { name: "OIC", href: "/capabilities/oic" },
+      { name: "SOA", href: "/capabilities/soa" },
     ],
   },
   { name: "FDI", href: "/capabilities/fdi" },
@@ -54,8 +54,8 @@ const oracle = [
 
 
 const ms = [
-  { name: "DevOps", href: "/capabilities/managed-services" },
-  { name: "Operations Support", href: "/capabilities/managed-services" },
+  { name: "DevOps", href: "/capabilities/devops" },
+  { name: "Operations Support", href: "/capabilities/operations-support" },
 ];
 
 const accelertors = [
@@ -304,12 +304,12 @@ export default function Navbar() {
                       <Link className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md" href="/careers">
                         Careers
                       </Link>
+                    </li>
                       <li>
                           <Link className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md" href="/uaug">
                               Utilities Analytics User Group
                           </Link>
                       </li>
-                    </li>
                   </ul>
                 </div>
               </>
