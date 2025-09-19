@@ -9,6 +9,20 @@ import Link from "next/link";
 import Cta from "@/components/reusable/CTA";
 
 const ServiceDetails = ({ services }: any) => {
+    // ✅ Allowed product titles
+    const allowedTitles = [
+        "utility360",
+        "storm analytics",
+        "ami analytics",
+        "reliability analytics",
+        "hexpert",
+        "sparc",
+        "communication audit platform"
+    ];
+
+    const currentTitle = services?.title?.toLowerCase().replace(/\s+/g, " ").trim();
+    const isProduct = allowedTitles.includes(currentTitle);
+
     return (
         <div className="overflow-x h-auto">
             <NewPageheader
@@ -18,6 +32,21 @@ const ServiceDetails = ({ services }: any) => {
                 description={services?.shortDescription}
             />
 
+            {/* ✅ Product-Specific CTA Section (only for products) */}
+            {isProduct && (
+                <div className="w-full py-12 bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center text-center gap-6 rounded-lg">
+                    <h2 className="text-2xl font-bold text-gray-800">
+                        Click Here To Connect With Us About {services?.title}
+                    </h2>
+                    <Link href={`https://info.hexstream.com/contact`}>
+                        <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all">
+                            Connect Now
+                        </button>
+                    </Link>
+                </div>
+            )}
+
+            {/* ✅ Main Content */}
             {services.subCategories.length > 0 && (
                 <div className="py-10 md:py-16 bg-primary/90 flex justify-center items-center gap-8 text-white relative">
                     <div className="flex gap-10 relative max-w-7xl mx-auto w-11/12">
@@ -101,7 +130,11 @@ const ServiceDetails = ({ services }: any) => {
                     </div>
                 </div>
             )}
-            <Cta title="Let's get your data streamlined today!" name="Get In Touch" />
+
+            {/* ✅ Default CTA (only for non-products, at bottom) */}
+            {!isProduct && (
+                <Cta title="Let's get your data streamlined today!" name="Get In Touch" />
+            )}
         </div>
     );
 };
