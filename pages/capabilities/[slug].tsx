@@ -38,7 +38,7 @@ const ServiceDetails = ({ services }: any) => {
                     <h2 className="text-2xl font-bold text-gray-800">
                         Click Here To Connect With Us About {services?.title}
                     </h2>
-                    <Link href={`https://info.hexstream.com/contact`}>
+                    <Link href={`https://share.hsforms.com/1oct4hDAxSDaIpPeGI-S6Cg4qz07`}>
                         <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all">
                             Connect Now
                         </button>
