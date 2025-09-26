@@ -101,10 +101,10 @@ function NewPageheader({
 
                         {/* Contact Us button (conditionally rendered) */}
                         {showButton && (
-                            <div className="ml-6 flex-shrink-0">
+                            <div className="mt-6 lg:mt-0 lg:ml-6 flex justify-center lg:justify-start flex-shrink-0">
                                 <Link
-                                    href="https://info.hexstream.com/contact"
-                                    className="text-primary text-base cursor-pointer font-bold duration-300 transition-colors hover:text-primeYellow contact-cta"
+                                    href="/contact"
+                                    className="px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-blue-700 transition"
                                 >
                                     Contact Us
                                 </Link>
