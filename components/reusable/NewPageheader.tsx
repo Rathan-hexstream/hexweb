@@ -103,7 +103,7 @@ function NewPageheader({
                         {showButton && (
                             <div className="mt-6 lg:mt-0 lg:ml-6 flex justify-center lg:justify-start flex-shrink-0">
                                 <Link
-                                    href="/contact"
+                                    href="https://info.hexstream.com/contact"
                                     className="px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-blue-700 transition"
                                 >
                                     Contact Us
