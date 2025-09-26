@@ -30,21 +30,24 @@ const ServiceDetails = ({ services }: any) => {
                 title={services?.title}
                 img={services?.mainImage?.url ?? I5}
                 description={services?.shortDescription}
+
+                // inside your JSX, where the button is rendered
+                showButton={allowedTitles.includes(services?.title?.toLowerCase())} // pass boolean
             />
 
             {/* ✅ Product-Specific CTA Section (only for products) */}
-            {isProduct && (
-                <div className="w-full py-12 bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center text-center gap-6 rounded-lg">
-                    <h2 className="text-2xl font-bold text-gray-800">
-                        Click Here To Connect With Us About {services?.title}
-                    </h2>
-                    <Link href={`https://info.hexstream.com/contact`}>
-                        <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all">
-                            Connect Now
-                        </button>
-                    </Link>
-                </div>
-            )}
+            {/*{isProduct && (*/}
+            {/*    <div className="w-full py-12 bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col items-center text-center gap-6 rounded-lg">*/}
+            {/*        <h2 className="text-2xl font-bold text-gray-800">*/}
+            {/*            Click Here To Connect With Us About {services?.title}*/}
+            {/*        </h2>*/}
+            {/*        <Link href={`https://info.hexstream.com/contact`}>*/}
+            {/*            <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-all">*/}
+            {/*                Connect Now*/}
+            {/*            </button>*/}
+            {/*        </Link>*/}
+            {/*    </div>*/}
+            {/*)}*/}
 
             {/* ✅ Main Content */}
             {services.subCategories.length > 0 && (
