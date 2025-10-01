@@ -17,7 +17,7 @@ const ServiceDetails = ({ services }: any) => {
         "reliability analytics",
         "hexpert",
         "sparc",
-        "communication audit platform"
+        "auditai"
     ];
 
     const currentTitle = services?.title?.toLowerCase().replace(/\s+/g, " ").trim();
