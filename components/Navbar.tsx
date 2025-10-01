@@ -32,7 +32,7 @@ const services = [
   },
   { name: "SPARC", href: "/capabilities/sparc" },
   { name: "HEXpert", href: "/capabilities/hexpert" },
-  { name: "Communication Audit Platform", href: "/capabilities/communication-audit-platform" },
+  { name: "AuditAI", href: "/capabilities/auditai" },
 ];
 
 const oracle = [
