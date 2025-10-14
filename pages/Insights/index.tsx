@@ -8,6 +8,7 @@ import { contentApi } from "@/utils/apolloClient";
 import { calculateReadingTime } from "@/components/reusable/readingTime";
 import NewPageheader from "@/components/reusable/NewPageheader";
 import white_papers from "@/public/assets/white_papers.jpg";
+import { useRouter } from "next/router";
 
 const FILTER_TYPES = [
     "Tech Corner",
@@ -85,6 +86,9 @@ const paginate = <T,>(items: T[], pageNumber: number, pageSize: number): T[] => 
 };
 
 const Index = () => {
+    const router = useRouter();
+    const { type: queryType } = router.query;
+
     const [whitepapers, setWhitepapers] = useState<any[]>([]);
     const [blogs, setBlogs] = useState<any[]>([]);
     const [techCorner, setTechCorner] = useState<any[]>([]);
@@ -225,6 +229,14 @@ const Index = () => {
 
         fetchAllData();
     }, []);
+
+    // Set selectedTypes if query parameter exists
+    useEffect(() => {
+        if (queryType && typeof queryType === "string") {
+            setSelectedTypes([queryType]);
+            setCurrentPage(1);
+        }
+    }, [queryType]);
 
     const handleFilterChange = (type: string) => {
         setSelectedTypes((prev) =>
