@@ -4,10 +4,10 @@ import React from "react";
 import logo3 from "../public/assets/bigHeaderLogo.png";
 
 const navigation = [
-    { name: "Success Stories", href: "/success-stories" },
-    { name: "Tech Corner", href: "/tech-corner" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Whitepapers", href: "/whitepapers" },
+    { name: "Success Stories", href: "/Insights?type=Success Stories" },
+    { name: "Tech Corner", href: "/Insights?type=Tech Corner" },
+    { name: "Blogs", href: "/Insights?type=HEXstream Blog" },
+    { name: "Whitepapers", href: "/Insights?type=White Papers" },
     { name: "UAUG", href: "/uaug" },
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
