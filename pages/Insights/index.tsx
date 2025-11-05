@@ -14,7 +14,7 @@ const FILTER_TYPES = [
     "Tech Corner",
     "Success Stories",
     "HEXstream Blog",
-    "White Papers",
+    "Whitepapers",
     // "UAUG",
 ];
 
@@ -192,7 +192,7 @@ const Index = () => {
 
                 setWhitepapers(wpRes.data.whitepapersConnection.edges.map(({ node }: any) => ({
                     ...node,
-                    contentType: "White Papers",
+                    contentType: "Whitepapers",
                     publishedAt: node.publishedAt,
                 })));
                 setBlogs(blogRes.data.blogsConnection.edges.map(({ node }: any) => ({
@@ -306,7 +306,7 @@ const Index = () => {
                 return "tech-corner";
             case "Success Stories":
                 return "success-stories";
-            case "White Papers":
+            case "Whitepapers":
                 return "whitepapers";
             // case "UAUG":
             //     return "uaug";
