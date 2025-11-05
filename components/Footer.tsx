@@ -7,7 +7,7 @@ const navigation = [
     { name: "Success Stories", href: "/Insights?type=Success Stories" },
     { name: "Tech Corner", href: "/Insights?type=Tech Corner" },
     { name: "Blogs", href: "/Insights?type=HEXstream Blog" },
-    { name: "Whitepapers", href: "/Insights?type=White Papers" },
+    { name: "Whitepapers", href: "/Insights?type=Whitepapers" },
     { name: "UAUG", href: "/uaug" },
     { name: "About Us", href: "/about" },
     { name: "Careers", href: "/careers" },
