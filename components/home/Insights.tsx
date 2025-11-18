@@ -11,7 +11,7 @@ import SwiperCore, { Autoplay, Navigation } from "swiper";
 const insights = [
   {
     name: "Success Stories",
-    href: "/success-stories",
+    href: "/Insights?type=Success Stories",
     icon: (props: any) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ const insights = [
   },
   {
     name: "Blogs",
-    href: "/blogs",
+    href: "/Insights?type=HEXstream Blog",
     icon: (props: any) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const insights = [
   },
   {
     name: "Whitepapers",
-    href: "/whitepapers",
+    href: "/Insights?type=Whitepapers",
     icon: (props: any) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ const insights = [
   },
   {
     name: "Tech Corner",
-    href: "/tech-corner",
+    href: "/Insights?type=Tech Corner",
     icon: (props: any) => (
       <svg
         xmlns="http://www.w3.org/2000/svg"

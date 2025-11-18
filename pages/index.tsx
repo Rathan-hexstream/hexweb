@@ -56,33 +56,33 @@ export default function Home({ data, heroSection, testimonials }: any) {
       <main className="overflow-x-hidden">
         <Herosection heroData={heroSection?.heroSection} />
         <Statistics />
-        <div className={"bg-prime/60 " + data.isEvent ? "mb-8" : ""}>
-          <div className="max-w-5xl mx-auto w-11/12 py-8 md:py-12">
-            <h2 className="md:text-3xl text-xl text-center pb-4 font-bold text-primary">
-              {"Utility360"}
-            </h2>
-            <div className="max-w-2xl mx-auto pb-8 text-primary">
-              <h2 className="pb-4 text-sm sm:text-base text-center">
-                {`The Utility360 suite of real-time analytics puts critical data at decision-makers’ fingertips. It is tailored to utility-specific needs and creates an integrated, unique "one data" view across all critical operational systems.`}
-              </h2>
-            </div>
-            <div className="relative">
-              <video
-                controls
-                className="w-full"
-                controlsList="nodownload"
-                playsInline
-                autoPlay={true} muted={true}
-              >
-                <source
-                  src={"https://media.graphassets.com/wjSzY48pTm2k94ET26Om"}
-                  type="video/mp4"
-                  className="object-cover"
-                />
-              </video>
-            </div>
-          </div>
-        </div>
+        {/*<div className={"bg-prime/60 " + data.isEvent ? "mb-8" : ""}>*/}
+        {/*  <div className="max-w-5xl mx-auto w-11/12 py-8 md:py-12">*/}
+        {/*    <h2 className="md:text-3xl text-xl text-center pb-4 font-bold text-primary">*/}
+        {/*      {"Utility360"}*/}
+        {/*    </h2>*/}
+        {/*    <div className="max-w-2xl mx-auto pb-8 text-primary">*/}
+        {/*      <h2 className="pb-4 text-sm sm:text-base text-center">*/}
+        {/*        {`The Utility360 suite of real-time analytics puts critical data at decision-makers’ fingertips. It is tailored to utility-specific needs and creates an integrated, unique "one data" view across all critical operational systems.`}*/}
+        {/*      </h2>*/}
+        {/*    </div>*/}
+        {/*    <div className="relative">*/}
+        {/*      <video*/}
+        {/*        controls*/}
+        {/*        className="w-full"*/}
+        {/*        controlsList="nodownload"*/}
+        {/*        playsInline*/}
+        {/*        autoPlay={true} muted={true}*/}
+        {/*      >*/}
+        {/*        <source*/}
+        {/*          src={"https://media.graphassets.com/wjSzY48pTm2k94ET26Om"}*/}
+        {/*          type="video/mp4"*/}
+        {/*          className="object-cover"*/}
+        {/*        />*/}
+        {/*      </video>*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         {data && data[0]?.isEvent ? <Events data={data} /> : null}
 
         <Insights />

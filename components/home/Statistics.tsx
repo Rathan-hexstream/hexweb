@@ -1,7 +1,8 @@
-
+import Image from 'next/image';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import React, {useState} from "react";
+import Logo from "@/public/clients/Honolulu_logo.png"
 
 const Statistics = () => {
   const responsiveSettings = [
@@ -9,28 +10,32 @@ const Statistics = () => {
       breakpoint: 800,
       settings: {
         slidesToShow: 6,
-        slidesToScroll: 6
+        slidesToScroll: 6,
+        pauseOnHover: true,
       }
     },
     {
       breakpoint: 500,
       settings: {
         slidesToShow: 4,
-        slidesToScroll: 4
+        slidesToScroll: 4,
+          pauseOnHover: true,
       }
     },
     {
       breakpoint: 375,
       settings: {
         slidesToShow: 2,
-        slidesToScroll: 2
+        slidesToScroll: 2,
+          pauseOnHover: true,
       }
     },
     {
       breakpoint: 320,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+          pauseOnHover: true,
       }
     },
   ];
@@ -48,12 +53,25 @@ const Statistics = () => {
             autoplay={true}
             transitionDuration={16000}
             responsive={responsiveSettings}
+            pauseOnHover={true}
         >
+
+
           <div><img src={'https://media.graphassets.com/UYDeVqMiROOCmHpGPmrg'} style={{height: 80}}/></div>
           <div><img src={'https://media.graphassets.com/AzQ3AMFRhubZdDy5CClG'} style={{height: 80}}/></div>
           <div><img src={'https://media.graphassets.com/9cpi5VL4TKaNFg29w5R2'} style={{height: 80}}/></div>
           <div><img src={'https://media.graphassets.com/VpiWMzIBTe2aQR1KZVqG'} style={{height: 40, marginTop: 20}}/>
           </div>
+
+            <div>
+                <img
+                    src= {Logo.src}
+                    style={{ height: 50, paddingRight: 40, marginTop: 13 }}
+                    alt="Honolulu Logo"
+                />
+            </div>
+
+
           <div><img src={'https://media.graphassets.com/EBQmnXSR1O5oH4m3iom8'} style={{height: 40, marginTop: 20,}}/>
           </div>
           <div><img src={'https://media.graphassets.com/aBiN5NtmQbW3juNV33gw'}
@@ -76,6 +94,7 @@ const Statistics = () => {
          {/* <div><img src={'https://media.graphassets.com/NMFTmyHQDAvicaEaywAy'} style={{height: 60}}/></div>*/}
           <div><img src={'https://media.graphassets.com/TlT9G8WnToOOJcrJMTBO'}
                     style={{height: 50, paddingRight: 40, marginTop: 13,}}/></div>
+
 
         </Slide>
       </div>

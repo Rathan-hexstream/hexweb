@@ -25,14 +25,14 @@ const services = [
     href: "/capabilities/utility360", // ✅ Proper link that will navigate
     hasSubmenu: true,                 // ✅ Flag to help in UI logic
     submenu: [
-      { name: "Storm Analytics", href: "/capabilities/utility360#1" },
-      { name: "Reliability Analytics", href: "/capabilities/utility360#2" },
-      { name: "AMI Analytics", href: "/capabilities/utility360#4" },
+      { name: "Storm Analytics", href: "/capabilities/storm-analytics" },
+      { name: "Reliability Analytics", href: "/capabilities/reliability-analytics" },
+      { name: "AMI Analytics", href: "/capabilities/ami-analytics" },
     ],
   },
   { name: "SPARC", href: "/capabilities/sparc" },
   { name: "HEXpert", href: "/capabilities/hexpert" },
-  { name: "Communication Audit Platform", href: "/capabilities/communication-audit-platform" },
+  { name: "AuditAI", href: "/capabilities/auditai" },
 ];
 
 const oracle = [
@@ -41,10 +41,10 @@ const oracle = [
     name: "Data Exchange",
     href: "/capabilities/data-exchange",
     submenu: [
-      { name: "Golden Gate", href: "/capabilities/data-exchange" },
-      { name: "LEC", href: "/capabilities/data-exchange#1" },
-      { name: "OIC", href: "/capabilities/data-exchange#2" },
-      { name: "SOA", href: "/capabilities/data-exchange#3" },
+      { name: "Golden Gate", href: "/capabilities/goldengate" },
+      { name: "LEC", href: "/capabilities/lec" },
+      { name: "OIC", href: "/capabilities/oic" },
+      { name: "SOA", href: "/capabilities/soa" },
     ],
   },
   { name: "FDI", href: "/capabilities/fdi" },
@@ -54,8 +54,8 @@ const oracle = [
 
 
 const ms = [
-  { name: "DevOps", href: "/capabilities/managed-services" },
-  { name: "Operations Support", href: "/capabilities/managed-services" },
+  { name: "DevOps", href: "/capabilities/devops" },
+  { name: "Operations Support", href: "/capabilities/operations-support" },
 ];
 
 const accelertors = [
@@ -210,31 +210,42 @@ export default function Navbar() {
                     </svg>
                   </button>
                   <ul className="dropdown-menu absolute hidden group-hover:block bg-white text-primary pt-1 w-52 rounded-lg shadow-lg z-50 transition duration-300 ease-in-out">
-                    {oracle.map(({ name, href, submenu }) => (
-                        <li key={name} className="relative group/submenu">
-                          {submenu ? (
-                              <>
-                                <span className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md cursor-pointer">
-                                  {name}
-                                  <svg className="w-3 h-3 inline ml-1 fill-current" viewBox="0 0 20 20"><path d="M6 4l8 6-8 6V4z" /></svg>
-                                </span>
-                                <ul className="absolute top-0 left-full hidden group-hover/submenu:block bg-white text-primary w-52 rounded-lg shadow-lg transition duration-300 ease-in-out z-50">
-                                  {submenu.map(({ name: subName, href: subHref }) => (
-                                      <li key={subName}>
-                                        <Link href={subHref} className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md">
-                                          {subName}
-                                        </Link>
-                                      </li>
-                                  ))}
-                                </ul>
-                              </>
-                          ) : (
-                              <Link href={href} className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md">
-                                {name}
-                              </Link>
-                          )}
-                        </li>
-                    ))}
+                      {oracle.map(({ name, href, submenu }) => (
+                          <li key={name} className="relative group/submenu">
+                              {submenu ? (
+                                  <>
+                                      <Link
+                                          href={href}
+                                          className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md flex justify-between items-center cursor-pointer"
+                                      >
+                                          {name}
+                                          <svg className="w-3 h-3 ml-1 fill-current" viewBox="0 0 20 20">
+                                              <path d="M6 4l8 6-8 6V4z" />
+                                          </svg>
+                                      </Link>
+                                      <ul className="absolute top-0 left-full hidden group-hover/submenu:block bg-white text-primary w-52 rounded-lg shadow-lg transition duration-300 ease-in-out z-50">
+                                          {submenu.map(({ name: subName, href: subHref }) => (
+                                              <li key={subName}>
+                                                  <Link
+                                                      href={subHref}
+                                                      className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md"
+                                                  >
+                                                      {subName}
+                                                  </Link>
+                                              </li>
+                                          ))}
+                                      </ul>
+                                  </>
+                              ) : (
+                                  <Link
+                                      href={href}
+                                      className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md"
+                                  >
+                                      {name}
+                                  </Link>
+                              )}
+                          </li>
+                      ))}
                   </ul>
                 </div>
                 {/* Technologies */}
@@ -305,6 +316,11 @@ export default function Navbar() {
                         Careers
                       </Link>
                     </li>
+                      <li>
+                          <Link className="py-2 px-4 block hover:bg-primary hover:text-white transition rounded-md" href="/uaug">
+                              Utilities Analytics User Group
+                          </Link>
+                      </li>
                   </ul>
                 </div>
               </>

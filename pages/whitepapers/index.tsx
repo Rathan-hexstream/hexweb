@@ -424,18 +424,18 @@ const Index = () => {
                                                     </p>
                                                 </div>
                                                 <div className="flex justify-between items-center mt-4 text-sm text-gray-600">
-                          <span>
-                            {calculateReadingTime(
-                                item.blogDetails?.text ||
-                                item.details?.text ||
-                                item.brief?.text ||
-                                ""
-                            )}{" "}
-                              Minute Read
-                          </span>
+                                                  <span>
+                                                    {calculateReadingTime(
+                                                        item.blogDetails?.text ||
+                                                        item.details?.text ||
+                                                        item.brief?.text ||
+                                                        ""
+                                                    )}{" "}
+                                                      Minute Read
+                                                  </span>
                                                     <span className="text-primary underline">
-                            Read More
-                          </span>
+                                                        Read More
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

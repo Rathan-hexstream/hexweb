@@ -9,6 +9,7 @@ import slider3 from "@/public/assets/slider/Slide3.jpeg";
 import slider4 from "@/public/assets/slider/Slide4.jpeg";
 import slider5 from "@/public/assets/slider/Slide5.jpeg";
 //import u360 from "@/public/assets/slider/Utility360Video.mp4";
+import Link from "next/link";
 
 function NewPageheader({
   img,
@@ -17,6 +18,7 @@ function NewPageheader({
   richText,
   aboutClient,
   type,
+  showButton, // new prop
 }: {
   img?: StaticImageData;
   title: string;
@@ -24,6 +26,7 @@ function NewPageheader({
   richText?: any;
   aboutClient?: any;
   type?: string;
+    showButton?: boolean;
 }) {
   // @ts-ignore
   // @ts-ignore
@@ -41,59 +44,76 @@ function NewPageheader({
               <polygon points="-50000,0 100,0 50,100" />
             </svg>
             <div className="">
-              <main className="mx-auto max-w-7xl sm:pt-14 md:px-4  lg:px-8 ">
-                <div className="sm:absolute lg:hidden top-0 left-0 -z-10 h-full w-full overflow-clip">
-                  <div className="sm:absolute top-0 left-0 w-full h-full" />
-                  {img && (
-                    <Image
-                      alt="Pageheader Image"
-                      src={img}
-                      className="w-full h-full brightness-50"
-                      width={1200}
-                      height={1200}
-                    />
-                  )}
-                  <div className="" />
-                </div>
-                <div className="text-center lg:text-left w-15/12 mx-auto">
-                  {type && (
-                    <div className="pb-3">
-                      <span className="bg-primary/80 rounded-full px-3 py-1 text-white text-sm">
-                        {type}
-                      </span>
+                <main className="mx-auto max-w-7xl sm:pt-14 md:px-4 lg:px-8">
+                    <div className="sm:absolute lg:hidden top-0 left-0 -z-10 h-full w-full overflow-clip">
+                        <div className="sm:absolute top-0 left-0 w-full h-full" />
+                        {img && (
+                            <Image
+                                alt="Pageheader Image"
+                                src={img}
+                                className="w-full h-full brightness-50"
+                                width={1200}
+                                height={1200}
+                            />
+                        )}
+                        <div className="" />
                     </div>
-                  )}
-                  <h1 className="text-2xl font-bold tracking-tight !text-primary lg:!text-primary sm:text-3xl">
-                    <span className="block xl:inline">{title}</span>{" "}
-                  </h1>
 
-                  {description && (
-                    <p className="mt-3 text-base  !text-primary lg:!text-primary sm:mx-auto sm:max-w-xl sm:text-lg md:text-xl lg:mx-0">
-                      {description}
-                    </p>
-                  )}
+                    {/* Flex container for text and button */}
+                    <div className="flex justify-between items-center w-full">
+                        <div className="text-center lg:text-left w-15/12 mx-auto">
+                            {type && (
+                                <div className="pb-3">
+                                    <span className="bg-primary/80 rounded-full px-3 py-1 text-white text-sm">
+                                      {type}
+                                    </span>
+                                </div>
+                            )}
+                            <h1 className="text-2xl font-bold tracking-tight !text-primary lg:!text-primary sm:text-3xl">
+                                <span className="block xl:inline">{title}</span>{" "}
+                            </h1>
 
-                  {richText && (
-                    <div className="mt-4 prose prose-teal leading-relaxed !text-primary sm:!text-white lg:!text-primary">
-                      <RichText content={richText} />
+                            {description && (
+                                <p className="mt-3 text-base !text-primary lg:!text-primary sm:mx-auto sm:max-w-xl sm:text-lg md:text-xl lg:mx-0">
+                                    {description}
+                                </p>
+                            )}
+
+                            {richText && (
+                                <div className="mt-4 prose prose-teal leading-relaxed !text-primary sm:!text-white lg:!text-primary">
+                                    <RichText content={richText} />
+                                </div>
+                            )}
+
+                            {aboutClient && (
+                                <div>
+                                    <h2
+                                        className={`md:text-4xl text-2xl font-bold !text-primary sm:!text-white lg:!text-primary pt-4`}
+                                    >
+                                        About the Client
+                                    </h2>
+                                    <div className="md:prose prose-teal leading-5 !text-primary sm:!text-white lg:!text-primary lg:text-left text-center">
+                                        <RichText content={aboutClient} />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Contact Us button (conditionally rendered) */}
+                        {showButton && (
+                            <div className="mt-6 lg:mt-0 lg:ml-6 flex justify-center lg:justify-start flex-shrink-0">
+                                <Link
+                                    href="https://info.hexstream.com/contact"
+                                    className="px-6 py-3 rounded-lg bg-red-600 text-white font-medium hover:bg-blue-700 transition"
+                                >
+                                    Contact Us
+                                </Link>
+                            </div>
+                        )}
                     </div>
-                  )}
-                  {aboutClient && (
-                    <div>
-                      <h2
-                        className={`md:text-4xl text-2xl font-bold !text-primary sm:!text-white lg:!text-primary pt-4`}
-                      >
-                        About the Client
-                      </h2>
-                      <div className="md:prose prose-teal leading-5 !text-primary sm:!text-white lg:!text-primary lg:text-left text-center">
-                        <RichText content={aboutClient} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </main>
+                </main>
             </div>
-          </div>
+        </div>
         <div className="lg:block lg:inset-y-0 lg:right-0 lg:w-1/2">
           {(img && title !== "Utility360") &&  (
               <Image

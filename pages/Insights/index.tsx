@@ -8,13 +8,14 @@ import { contentApi } from "@/utils/apolloClient";
 import { calculateReadingTime } from "@/components/reusable/readingTime";
 import NewPageheader from "@/components/reusable/NewPageheader";
 import white_papers from "@/public/assets/white_papers.jpg";
+import { useRouter } from "next/router";
 
 const FILTER_TYPES = [
     "Tech Corner",
     "Success Stories",
     "HEXstream Blog",
-    "White Papers",
-    "UAUG",
+    "Whitepapers",
+    // "UAUG",
 ];
 
 // ✅ Added type for Pagination props
@@ -85,11 +86,14 @@ const paginate = <T,>(items: T[], pageNumber: number, pageSize: number): T[] => 
 };
 
 const Index = () => {
+    const router = useRouter();
+    const { type: queryType } = router.query;
+
     const [whitepapers, setWhitepapers] = useState<any[]>([]);
     const [blogs, setBlogs] = useState<any[]>([]);
     const [techCorner, setTechCorner] = useState<any[]>([]);
     const [successStories, setSuccessStories] = useState<any[]>([]);
-    const [uaug, setUAUG] = useState<any[]>([]);
+    // const [uaug, setUAUG] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [search, setSearch] = useState<string>("");
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -99,7 +103,7 @@ const Index = () => {
     useEffect(() => {
         const fetchAllData = async () => {
             try {
-                const [wpRes, blogRes, techRes, storyRes, uaugRes] = await Promise.all([
+                const [wpRes, blogRes, techRes, storyRes ] = await Promise.all([
                     contentApi.query({
                         query: gql`
                             {
@@ -170,25 +174,25 @@ const Index = () => {
                             }
                         `,
                     }),
-                    contentApi.query({
-                        query: gql`
-                            {
-                                uaugEvents(first: 100, orderBy: publishedAt_DESC) {
-                                    eventTitle
-                                    slug
-                                    eventExcerpt
-                                    eventBanner { url }
-                                    eventDetails { text }
-                                    publishedAt
-                                }
-                            }
-                        `,
-                    }),
+                    // contentApi.query({
+                    //     query: gql`
+                    //         {
+                    //             uaugEvents(first: 100, orderBy: publishedAt_DESC) {
+                    //                 eventTitle
+                    //                 slug
+                    //                 eventExcerpt
+                    //                 eventBanner { url }
+                    //                 eventDetails { text }
+                    //                 publishedAt
+                    //             }
+                    //         }
+                    //     `,
+                    // }),
                 ]);
 
                 setWhitepapers(wpRes.data.whitepapersConnection.edges.map(({ node }: any) => ({
                     ...node,
-                    contentType: "White Papers",
+                    contentType: "Whitepapers",
                     publishedAt: node.publishedAt,
                 })));
                 setBlogs(blogRes.data.blogsConnection.edges.map(({ node }: any) => ({
@@ -206,15 +210,15 @@ const Index = () => {
                     contentType: "Success Stories",
                     publishedAt: item.createdAt,
                 })));
-                setUAUG(uaugRes.data.uaugEvents.map((item: any) => ({
-                    title: item.eventTitle,
-                    slug: item.slug,
-                    shortDescription: item.eventExcerpt,
-                    mainBanner: item.eventBanner,
-                    details: item.eventDetails,
-                    contentType: "UAUG",
-                    publishedAt: item.publishedAt,
-                })));
+                // setUAUG(uaugRes.data.uaugEvents.map((item: any) => ({
+                //     title: item.eventTitle,
+                //     slug: item.slug,
+                //     shortDescription: item.eventExcerpt,
+                //     mainBanner: item.eventBanner,
+                //     details: item.eventDetails,
+                //     contentType: "UAUG",
+                //     publishedAt: item.publishedAt,
+                // })));
 
                 setLoading(false);
             } catch (error) {
@@ -225,6 +229,14 @@ const Index = () => {
 
         fetchAllData();
     }, []);
+
+    // Set selectedTypes if query parameter exists
+    useEffect(() => {
+        if (queryType && typeof queryType === "string") {
+            setSelectedTypes([queryType]);
+            setCurrentPage(1);
+        }
+    }, [queryType]);
 
     const handleFilterChange = (type: string) => {
         setSelectedTypes((prev) =>
@@ -238,7 +250,7 @@ const Index = () => {
         setCurrentPage(1);
     };
 
-    const combinedData = [...whitepapers, ...blogs, ...techCorner, ...successStories, ...uaug].sort((a, b) => {
+    const combinedData = [...whitepapers, ...blogs, ...techCorner, ...successStories, {/*...uaug*/}].sort((a, b) => {
         const aT = new Date(a.publishedAt || a.createdAt).getTime();
         const bT = new Date(b.publishedAt || b.createdAt).getTime();
         return bT - aT;
@@ -294,10 +306,10 @@ const Index = () => {
                 return "tech-corner";
             case "Success Stories":
                 return "success-stories";
-            case "White Papers":
+            case "Whitepapers":
                 return "whitepapers";
-            case "UAUG":
-                return "uaug";
+            // case "UAUG":
+            //     return "uaug";
             default:
                 return "";
         }
