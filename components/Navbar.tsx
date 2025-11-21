@@ -28,6 +28,7 @@ const services = [
       { name: "Storm Analytics", href: "/capabilities/storm-analytics" },
       { name: "Reliability Analytics", href: "/capabilities/reliability-analytics" },
       { name: "AMI Analytics", href: "/capabilities/ami-analytics" },
+      { name: "Field Analytics", href: "/capabilities/field-services-analytics" },
     ],
   },
   { name: "SPARC", href: "/capabilities/sparc" },
